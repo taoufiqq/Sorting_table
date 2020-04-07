@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+	
+	<div class="container ">
+		<form class="contact" >
+		<h1> Formulaire</h1>
+	
+	<input placeholder="Nom" type="text"  id="Nom" > <br>
+	<input  placeholder="prenom" type="text"  id="prenom"> <br>
+	<input placeholder="age" type="text" id="age"> <br>
+	<input  placeholder="profession"type="text"  id="profession"> <br>
+	<input id="btn" type="button" name="submit" value="Ajouter " onclick="affichage()">
+</form>
+  </div>
+
+<table id="myTable" style="width: 800px">
+	<tr>
+		<th>Nom </th>
+		<th>prenom </th>
+		<th> age  </th>
+		<th> profession</th>
+	</tr>	
+
+	
+</table>
+      <button class="btn" onclick="sortTable()">Sort by alpha</button>
+<script >
+		
+
+     /*Fonction d'affichage*/	
+
+	function affichage() {
+
+		
+		 
+		    // Création de la ligne
+		    var TR = document.createElement ("tr");
+		    // Création de la première cellule
+			var nom = document.getElementById('Nom').value;  
+		    var TD1  = document.createElement ("td");
+		    var TXT1 = document.createTextNode (nom);
+		    TD1.appendChild (TXT1);
+			
+		    // Création de la deuxième cellule
+			var prenom = document.getElementById('prenom').value;  
+		    var TD2  = document.createElement ("td");
+		    var TXT2 = document.createTextNode (prenom);
+		    TD2.appendChild (TXT2);
+		    // Création de la 3eme cellule
+			var age = document.getElementById('age').value;  
+		    var TD3  = document.createElement ("td");
+		    var TXT3 = document.createTextNode (age);
+		    TD3.appendChild (TXT3);
+		    // Création de la 4eme cellule
+			var profession = document.getElementById('profession').value;  
+		    var TD4  = document.createElement ("td");
+		    var TXT4 = document.createTextNode (profession);
+		    TD4.appendChild (TXT4);
+		    
+			
+		    // On assemble les cellules a la ligne
+		    TR.appendChild(TD1);
+		    TR.appendChild(TD2);
+		    TR.appendChild(TD3);
+		    TR.appendChild(TD4);
+		   
+
+		    // On assemble la ligne au tableau
+		    document.getElementById ('myTable').appendChild (TR);
+		}
+
+       
+
+
+
+         function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("myTable");
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("td")[0];
+      y = rows[i + 1].getElementsByTagName("td")[0];
+      //check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+
+</script>
+
+</body>
+</html>
